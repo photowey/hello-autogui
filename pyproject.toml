@@ -1,0 +1,35 @@
+[project]
+name = "hello-autogui"
+version = "0.1.0"
+
+description = "Sample project of pyautogui by PDM package"
+
+authors = [
+  { name = "photowey", email = "photowey@gmail.com" },
+]
+
+dependencies = [
+  "pyinstaller>=6.11.1",
+  "pyautogui>=0.9.54",
+  "pillow>=11.1.0",
+  "PyMsgBox>=1.0.9",
+]
+
+requires-python = "==3.13.*"
+readme = "README.md"
+license = { text = "MIT" }
+
+[tool.pdm]
+distribution = false
+
+[tool.pdm.scripts]
+start = "python src/main/python/main.py"
+clean = "python clean.py"
+package = "pyinstaller --onefile --name hello-autogui --paths src/main/python src/main/python/main.py"
+transfer = "pdm export -f requirements --no-hashes"
+
+[tool.pdm.build]
+package-dir = "src/main/python"
+
+[repository.pypi]
+url = "https://mirrors.aliyun.com/pypi/simple"
