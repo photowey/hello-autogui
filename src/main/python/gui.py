@@ -23,17 +23,22 @@ gui module.
 
 import pyautogui as ui
 import pymsgbox as box
+from pywinauto import Desktop
 
 
 # ----------------------------------------------------------------
 
 
 def run():
-    dclick()
+    # dclick()
 
-    # desktop_auto()
+    desktop_auto('resources/recycler_bin.png')
+    sleep(5)
+    desktop_auto('resources/drawio.png')
+    sleep(10)
 
-    # sleep(2)
+    desktop_windows()
+
     # click()
 
     # screenshot()
@@ -53,11 +58,30 @@ def dclick():
     ui.doubleClick(30, 35, duration=1)
 
 
-def desktop_auto():
-    recycle_bin_image_path = 'recycler_bin.png'
+def desktop_auto(recycle_bin_image_path: str):
+    # recycle_bin_image_path = 'recycler_bin.png'
     recycle_bin_center = ui.locateCenterOnScreen(recycle_bin_image_path, confidence=0.8)
 
     ui.doubleClick(recycle_bin_center)
+
+
+def desktop_windows():
+    desktop = Desktop(backend='uia')
+    windows = desktop.windows()
+
+    for window in windows:
+        close_window(window, 'chrome')
+        close_window(window, 'draw.io')
+        close_window(window, 'recycler')
+
+
+def close_window(window, target_app: str):
+    if target_app.lower() in window.window_text().lower():
+        try:
+            print(f"Closing window: {window.window_text()}")
+            window.close()
+        except Exception as e:
+            print(f"Failed to close {window.window_text()}: {e}")
 
 
 def click():
