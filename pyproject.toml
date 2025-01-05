@@ -13,6 +13,9 @@ dependencies = [
   "pyautogui>=0.9.54",
   "pillow>=11.1.0",
   "PyMsgBox>=1.0.9",
+  "pywinauto>=0.6.8",
+  "opencv-python>=4.10.0.84",
+  "numpy>=2.2.1",
 ]
 
 requires-python = "==3.13.*"

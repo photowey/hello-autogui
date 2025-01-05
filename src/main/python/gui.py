@@ -2,6 +2,7 @@
 """
 gui module.
 """
+
 #  Copyright © 2024 the original author or authors.
 #
 #  Licensed under the Apache License, Version 2.0 (the "License");
@@ -24,17 +25,20 @@ import pyautogui as ui
 import pymsgbox as box
 
 
-def run():
-    # dclick()
+# ----------------------------------------------------------------
 
-    # dclick_ocr()
+
+def run():
+    dclick()
+
+    # desktop_auto()
 
     # sleep(2)
     # click()
 
     # screenshot()
 
-    confirm()
+    # confirm()
 
 
 def sleep(seconds: int):
@@ -49,8 +53,11 @@ def dclick():
     ui.doubleClick(30, 35, duration=1)
 
 
-def dclick_ocr():
-    pass
+def desktop_auto():
+    recycle_bin_image_path = 'recycler_bin.png'
+    recycle_bin_center = ui.locateCenterOnScreen(recycle_bin_image_path, confidence=0.8)
+
+    ui.doubleClick(recycle_bin_center)
 
 
 def click():
@@ -62,5 +69,9 @@ def screenshot():
 
 
 def confirm():
-    rvt = box.confirm('Title', 'Hello', ['Ok', 'Cancel'])
+    rvt = box.confirm('joke(R U OK)', 'Hello', ['Ok', 'Cancel'])
     print(rvt)
+
+
+def nodepad():
+    pass
